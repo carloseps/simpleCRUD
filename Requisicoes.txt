@@ -1,0 +1,81 @@
+TESTAR - ALUNOS
+
+GET http://localhost:8080/alunos/getall
+
+GET http://localhost:8080/alunos/{id}
+//Substituir {id} pelo ID real do aluno
+
+POST http://localhost:8080/alunos/add
+{
+    "nome": "Maria Souza",
+    "cpf": "987.654.321-00",
+    "matricula": 2022002,
+    "genero": "FEMININO",
+    "curso": "Engenharia Elétrica",
+    "dataNascimento": "1992-08-15",
+    "ativo": true
+}
+
+PUT http://localhost:8080/alunos/{id}
+//Substituir {id} pelo ID real do aluno
+{
+    "nome": "Maria da Silva",
+    "cpf": "123.456.789-10",
+    "matricula": 2022002,
+    "genero": "FEMININO",
+    "curso": "Engenharia de Software",
+    "dataNascimento": "1992-08-15",
+    "ativo": true
+}
+
+DELETE http://localhost:8080/alunos/{id}
+//Substituir {id} pelo ID real do aluno
+
+PATCH http://localhost:8080/alunos/{id}
+//Substituir {id} pelo ID real do aluno
+{
+    "ativo": false
+}
+
+_____________________________________________
+
+TESTAR - PROFESSORES
+
+GET http://localhost:8080/professores/getall
+
+GET http://localhost:8080/professores/{id}
+//Substituir {id} pelo ID real do professor
+
+POST http://localhost:8080/professores/add
+{
+    "nome": "João Oliveira",
+    "cpf": "456.789.123-00",
+    "matricula": 2022003,
+    "genero": "MASCULINO",
+    "departamento": "Ciência da Computação",
+    "dataNascimento": "1985-05-20",
+    "salario": 5000.00,
+    "ativo": true
+}
+
+PUT http://localhost:8080/professores/{id}
+//Substituir {id} pelo ID real do professor
+{
+    "nome": "João Silva",
+    "cpf": "456.789.123-00",
+    "matricula": 2022003,
+    "genero": "MASCULINO",
+    "departamento": "Engenharia de Software",
+    "dataNascimento": "1985-05-20",
+    "salario": 5000.00,
+    "ativo": true
+}
+
+DELETE http://localhost:8080/professores/{id}
+//Substituir {id} pelo ID real do professor
+
+PATCH http://localhost:8080/professores/{id}
+//Substituir {id} pelo ID real do professor
+{
+    "ativo": false
+}
