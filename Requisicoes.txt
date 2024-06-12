@@ -57,7 +57,7 @@ DELETE ://localhost:8080/alunos/{id}
 // Substituir {id} pelo ID real do aluno
 
 PATCH desativar aluno
-PATCH ://localhost:8080/alunos/{id}
+PATCH ://localhost:8080/alunos/deleteLogic/{id}
 // Substituir {id} pelo ID real do aluno
 {
     "ativo": false
@@ -130,7 +130,7 @@ DELETE ://localhost:8080/professores/{id}
 
 
 PATCH desativar professor
-PATCH ://localhost:8080/professores/{id}
+PATCH ://localhost:8080/professores/deleteLogic/{id}
 // Substituir {id} pelo ID real do professor
 {
     "ativo": false
@@ -181,7 +181,7 @@ DELETE ://localhost:8080/turmas/{id}
 
 
 PATCH atualizar nome da turma
-PATCH ://localhost:8080/turmas/{id}
+PATCH ://localhost:8080/turmas/deleteLogic/{id}
 // Substituir {id} pelo ID real da turma
 {
     "nome": "Turma de Álgebra"
