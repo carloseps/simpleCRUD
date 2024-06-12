@@ -2,7 +2,7 @@ package imd.ufrn.br.crud.controller;
 
 import imd.ufrn.br.crud.dto.AlunoDTO;
 import imd.ufrn.br.crud.entity.AlunoEntity;
-import imd.ufrn.br.crud.repository.AlunoRepository;
+import imd.ufrn.br.crud.service.AlunoService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,74 +16,44 @@ import java.util.List;
 public class AlunoController {
 
     @Autowired
-    private AlunoRepository alunoRepository;
+    private AlunoService alunoService;
 
     @GetMapping("/getall")
     public ResponseEntity<List<AlunoEntity>> getAllAlunos() {
-        List<AlunoEntity> alunos = (List<AlunoEntity>) alunoRepository.findAll();
-        return ResponseEntity.ok(alunos);
+        return ResponseEntity.ok(alunoService.getAllAlunos());
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<AlunoEntity> getAlunoById(@PathVariable Long id) {
-        AlunoEntity aluno = alunoRepository.findById(id).orElse(null);
-        if (aluno != null) {
-            return ResponseEntity.ok(aluno);
-        } else {
-            return ResponseEntity.notFound().build();
-        }
+        return alunoService.getAlunoById(id)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
     }
 
     @PostMapping("/add")
-    public ResponseEntity<AlunoEntity> postAluno(@Valid @RequestBody AlunoDTO alunoDTO) {
-        AlunoEntity aluno = new AlunoEntity(
-                alunoDTO.nome(),
-                alunoDTO.cpf(),
-                alunoDTO.matricula(),
-                alunoDTO.genero(),
-                alunoDTO.curso(),
-                alunoDTO.dataNascimento(),
-                alunoDTO.ativo()
-        );
-        AlunoEntity savedAluno = alunoRepository.save(aluno);
-        return ResponseEntity.status(HttpStatus.CREATED).body(savedAluno);
+    public ResponseEntity<AlunoEntity> createAluno(@Valid @RequestBody AlunoDTO alunoDTO) {
+        AlunoEntity createdAluno = alunoService.saveAluno(alunoDTO);
+        return ResponseEntity.status(HttpStatus.CREATED).body(createdAluno);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<AlunoEntity> putAluno(@PathVariable Long id, @RequestBody AlunoEntity alunoDetails) {
-        AlunoEntity aluno = alunoRepository.findById(id).orElse(null);
-        if (aluno != null) {
-            aluno.setNome(alunoDetails.getNome());
-            aluno.setCpf(alunoDetails.getCpf());
-            aluno.setMatricula(alunoDetails.getMatricula());
-            aluno.setGenero(alunoDetails.getGenero());
-            aluno.setCurso(alunoDetails.getCurso());
-            aluno.setDataNascimento(alunoDetails.getDataNascimento());
-            return ResponseEntity.ok(alunoRepository.save(aluno));
-        } else {
-            return ResponseEntity.notFound().build();
-        }
+    public ResponseEntity<AlunoEntity> updateAluno(@PathVariable Long id, @Valid @RequestBody AlunoEntity alunoDetails) {
+        return alunoService.updateAluno(id, alunoDetails) != null
+                ? ResponseEntity.ok(alunoService.updateAluno(id, alunoDetails))
+                : ResponseEntity.notFound().build();
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteAluno(@PathVariable Long id) {
-        if (alunoRepository.existsById(id)) {
-            alunoRepository.deleteById(id);
-            return ResponseEntity.noContent().build();
-        } else {
-            return ResponseEntity.notFound().build();
-        }
+        return alunoService.deleteAluno(id)
+                ? ResponseEntity.noContent().build()
+                : ResponseEntity.notFound().build();
     }
 
-    @PatchMapping("/{id}")
+    @PatchMapping("/deleteLogic/{id}")
     public ResponseEntity<Void> deleteLogicAluno(@PathVariable Long id) {
-        AlunoEntity aluno = alunoRepository.findById(id).orElse(null);
-        if (aluno != null) {
-            aluno.setAtivo(false);
-            alunoRepository.save(aluno);
-            return ResponseEntity.noContent().build();
-        } else {
-            return ResponseEntity.notFound().build();
-        }
+        return alunoService.deleteLogicAluno(id)
+                ? ResponseEntity.noContent().build()
+                : ResponseEntity.notFound().build();
     }
 }

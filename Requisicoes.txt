@@ -1,56 +1,85 @@
 TESTAR - ALUNOS
 
-GET http://localhost:8080/alunos/getall
+GET todos os alunos
+GET ://localhost:8080/alunos/getall
 
-GET http://localhost:8080/alunos/{id}
-//Substituir {id} pelo ID real do aluno
+GET aluno por ID
+GET ://localhost:8080/alunos/{id}
+// Substituir {id} pelo ID real do aluno
 
-POST http://localhost:8080/alunos/add
+POST criar aluno
+POST ://localhost:8080/alunos/add
 {
     "nome": "Maria Souza",
     "cpf": "987.654.321-00",
-    "matricula": 2022002,
+    "matricula": 2024001,
     "genero": "FEMININO",
     "curso": "Engenharia Elétrica",
     "dataNascimento": "1992-08-15",
     "ativo": true
 }
 
-PUT http://localhost:8080/alunos/{id}
-//Substituir {id} pelo ID real do aluno
+{
+    "nome": "Thiago Ferreira",
+    "cpf": "110.658.944-06",
+    "matricula": 2024002,
+    "genero": "MASCULINO",
+    "curso": "Engenharia Química",
+    "dataNascimento": "1999-05-30",
+    "ativo": true
+}
+
+{
+    "nome": "João Lucas",
+    "cpf": "100.433.634-90",
+    "matricula": 2024003,
+    "genero": "MASCULINO",
+    "curso": "Engenharia de Alimentos",
+    "dataNascimento": "1989-12-10",
+    "ativo": true
+}
+
+PUT atualizar aluno
+PUT ://localhost:8080/alunos/{id}
+// Substituir {id} pelo ID real do aluno
 {
     "nome": "Maria da Silva",
     "cpf": "123.456.789-10",
-    "matricula": 2022002,
+    "matricula": 2024112,
     "genero": "FEMININO",
     "curso": "Engenharia de Software",
     "dataNascimento": "1992-08-15",
     "ativo": true
 }
 
-DELETE http://localhost:8080/alunos/{id}
-//Substituir {id} pelo ID real do aluno
+DELETE remover aluno
+DELETE ://localhost:8080/alunos/{id}
+// Substituir {id} pelo ID real do aluno
 
-PATCH http://localhost:8080/alunos/{id}
-//Substituir {id} pelo ID real do aluno
+PATCH desativar aluno
+PATCH ://localhost:8080/alunos/{id}
+// Substituir {id} pelo ID real do aluno
 {
     "ativo": false
 }
 
-_____________________________________________
+____________________________________________________________
 
 TESTAR - PROFESSORES
 
-GET http://localhost:8080/professores/getall
+GET todos os professores
+GET ://localhost:8080/professores/getall
 
-GET http://localhost:8080/professores/{id}
-//Substituir {id} pelo ID real do professor
+GET professor por ID
+GET ://localhost:8080/professores/{id}
+// Substituir {id} pelo ID real do professor
 
-POST http://localhost:8080/professores/add
+POST criar professor
+POST ://localhost:8080/professores/add
 {
     "nome": "João Oliveira",
-    "cpf": "456.789.123-00",
-    "matricula": 2022003,
+    "cpf": "061.124.854-94",
+    "matricula": 2022001,
     "genero": "MASCULINO",
     "departamento": "Ciência da Computação",
     "dataNascimento": "1985-05-20",
@@ -58,12 +87,36 @@ POST http://localhost:8080/professores/add
     "ativo": true
 }
 
-PUT http://localhost:8080/professores/{id}
-//Substituir {id} pelo ID real do professor
+{
+    "nome": "Renato Felipe",
+    "cpf": "017.659.514-70",
+    "matricula": 2022002,
+    "genero": "MASCULINO",
+    "departamento": "Engenharia da Computação",
+    "dataNascimento": "1977-09-22",
+    "salario": 7000.00,
+    "ativo": true
+}
+
+{
+    "nome": "Sara Gomes",
+    "cpf": "072.984.404-89",
+    "matricula": 2022003,
+    "genero": "FEMININO",
+    "departamento": "Engenharia de Software",
+    "dataNascimento": "1987-01-15",
+    "salario": 6500.00,
+    "ativo": true
+}
+
+
+PUT atualizar professor
+PUT ://localhost:8080/professores/{id}
+// Substituir {id} pelo ID real do professor
 {
     "nome": "João Silva",
     "cpf": "456.789.123-00",
-    "matricula": 2022003,
+    "matricula": 2022001,
     "genero": "MASCULINO",
     "departamento": "Engenharia de Software",
     "dataNascimento": "1985-05-20",
@@ -71,11 +124,95 @@ PUT http://localhost:8080/professores/{id}
     "ativo": true
 }
 
-DELETE http://localhost:8080/professores/{id}
-//Substituir {id} pelo ID real do professor
+DELETE remover professor
+DELETE ://localhost:8080/professores/{id}
+// Substituir {id} pelo ID real do professor
 
-PATCH http://localhost:8080/professores/{id}
-//Substituir {id} pelo ID real do professor
+
+PATCH desativar professor
+PATCH ://localhost:8080/professores/{id}
+// Substituir {id} pelo ID real do professor
 {
     "ativo": false
 }
+
+____________________________________________________________
+
+TESTAR - TURMAS
+GET todas as turmas
+GET ://localhost:8080/turmas
+
+GET turma por ID
+GET ://localhost:8080/turmas/{id}
+// Substituir {id} pelo ID real da turma
+
+POST criar turma
+POST ://localhost:8080/turmas
+{
+    "nome": "Turma de Bioinformática",
+    "codigo": "BINF01",
+    "ativa": true
+}
+
+{
+    "nome": "Turma de Química",
+    "codigo": "QMIC01",
+    "ativa": true
+}
+
+{
+    "nome": "Turma de Desenvolvimento de Software",
+    "codigo": "DESV01",
+    "ativa": true
+}
+
+PUT atualizar turma
+PUT ://localhost:8080/turmas/{id}
+// Substituir {id} pelo ID real da turma
+{
+    "nome": "Turma de Matemática Avançada",
+    "codigo": "MATV01",
+    "ativa": true
+}
+
+DELETE remover turma
+DELETE ://localhost:8080/turmas/{id}
+// Substituir {id} pelo ID real da turma
+
+
+PATCH atualizar nome da turma
+PATCH ://localhost:8080/turmas/{id}
+// Substituir {id} pelo ID real da turma
+{
+    "nome": "Turma de Álgebra"
+}
+
+____________________________________________________________
+
+TESTAR - MATRICULAR ALUNO EM TURMA
+POST matricular aluno em turma
+POST ://localhost:8080/turmas/{turmaId}/alunos/{alunoId}
+// Substituir {turmaId} e {alunoId} pelos IDs reais
+
+____________________________________________________________
+
+TESTAR - REMOVER ALUNO DE TURMA
+DELETE remover aluno de turma
+DELETE ://localhost:8080/turmas/{turmaId}/alunos/{alunoId}
+// Substituir {turmaId} e {alunoId} pelos IDs reais
+
+____________________________________________________________
+
+TESTAR - ASSOCIAR PROFESSOR A TURMA
+POST associar professor a turma
+POST ://localhost:8080/turmas/{turmaId}/professores/{professorId}
+// Substituir {turmaId} e {professorId} pelos IDs reais
+
+____________________________________________________________
+
+TESTAR - REMOVER PROFESSOR DE TURMA
+DELETE remover professor de turma
+DELETE ://localhost:8080/turmas/{turmaId}/professores/{professorId}
+// Substituir {turmaId} e {professorId} pelos IDs reais
+
+

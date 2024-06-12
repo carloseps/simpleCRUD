@@ -1,5 +1,6 @@
 package imd.ufrn.br.crud.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import imd.ufrn.br.crud.enums.Genero;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,6 +10,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import jakarta.persistence.*;
 import java.time.LocalDate;
+import java.util.List;
 
 @Getter
 @Setter
@@ -27,18 +29,29 @@ public class ProfessorEntity {
 
     private String nome;
     private int matricula;
+
+    @Enumerated(EnumType.STRING)
     private Genero genero;
+
     private String departamento;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate dataNascimento;
 
     private float salario;
-    private String disciplinaAssociada;
 
     private boolean ativo;
 
-    public ProfessorEntity(String cpf, String nome, int matricula, Genero genero, String departamento, LocalDate dataNascimento, float salario, String disciplinaAssociada, boolean ativo) {
+    @ManyToMany
+    @JoinTable(
+            name = "professor_turmas",
+            joinColumns = @JoinColumn(name = "professor_id"),
+            inverseJoinColumns = @JoinColumn(name = "turma_id")
+    )
+    @JsonIgnore
+    private List<TurmaEntity> turmas;
+
+    public ProfessorEntity(String cpf, String nome, int matricula, Genero genero, String departamento, LocalDate dataNascimento, float salario, boolean ativo, List<TurmaEntity> turmas) {
         this.cpf = cpf;
         this.nome = nome;
         this.matricula = matricula;
@@ -46,7 +59,7 @@ public class ProfessorEntity {
         this.departamento = departamento;
         this.dataNascimento = dataNascimento;
         this.salario = salario;
-        this.disciplinaAssociada = disciplinaAssociada;
         this.ativo = ativo;
+        this.turmas = turmas;
     }
 }
