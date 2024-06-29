@@ -216,3 +216,20 @@ DELETE ://localhost:8080/turmas/{turmaId}/professores/{professorId}
 // Substituir {turmaId} e {professorId} pelos IDs reais
 
 
+____________________________________________________________
+
+TESTAR - AUTH
+
+POST - REGISTER
+{
+	"login": "testandoRegister",
+	"password": "123",
+	"role": "USER"
+}
+
+
+POST - LOGIN
+{
+	"login": "admin",
+	"password": "123"
+}

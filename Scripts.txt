@@ -1,0 +1,2 @@
+INSERT INTO universidade.users (login, password, role)
+VALUES ('admin', '$2a$10$Xt9ud0Up6.yb5mzv26nwye5k6/aRGCvtMTLgZt/WCL7GpwvL550Xu', 'ADMIN');
